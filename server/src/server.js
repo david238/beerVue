@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 var validateRequest = require('./Middlewares/validateRequest');
+var cacheMemory = require('./Middlewares/cacheMemory');
 
 const app = express();
 app.use(bodyParser.json());
@@ -16,20 +17,28 @@ const punkApiService = new PunkApiService();
 const noSqlService = new NoSqlService();
 
 // Task 1: Add a REST endpoint to retrieve a list of beers.
-app.get('/beers', validateRequest, (req, res) => {
+app.get('/beers', validateRequest, cacheMemory, (req, res) => {
     // sanitize query string parameter
     const beerName = req.queryString('name');
     try {
-        punkApiService.getBeerName(beerName).then((response) => {
-            res.status(200).send({
-                result: response
+        if (beerName && beerName != '') {
+            punkApiService.getBeerName(beerName).then((response) => {
+                // fire and forget
+                res.status(200).send({
+                    result: response
+                });
+            }).catch((error) => {
+                res.status(401).json({
+                    path: '/beers',
+                    error: error
+                });
             });
-        }).catch((error) => {
+        } else {
             res.status(401).json({
                 path: '/beers',
-                error: error
+                error: 'sorry you have to pass a beer name'
             });
-        });
+        }
     } catch(error) {
         res.status(401).json({
             path: '/beers',
