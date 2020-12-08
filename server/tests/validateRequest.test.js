@@ -10,6 +10,7 @@ chai.use(chaiHttp);
 
 const validEmailAddress = 'test@gmail.com';
 const invalidEmailAddress = 'test@gmailcom';
+const queryParam = 'punk';
 
 describe('Unit Test API middleware', () => {
     describe('GET /beers', () => {
@@ -19,9 +20,9 @@ describe('Unit Test API middleware', () => {
                 chai.request(server)
                 .get('/beers')
                 .set('x-user', validEmailAddress)
-                .send({name: 'ipa'})
+                .query({name: queryParam})
                 .end((err, response) => {
-                expect(response.statusCode).to.equal(200);
+                    expect(response.statusCode).to.equal(200);
                 done();
                 });
             });
@@ -30,7 +31,7 @@ describe('Unit Test API middleware', () => {
                 chai.request(server)
                 .get('/beers')
                 .set('x-user', validEmailAddress)
-                .send({name: 'ipa'})
+                .query({name: queryParam})
                 .end((err, response) => {
                 expect(response.body.result).to.be.an('array');
                 done();
@@ -44,7 +45,7 @@ describe('Unit Test API middleware', () => {
                 chai.request(server)
                 .get('/beers')
                 .set('x-user', invalidEmailAddress)
-                .send({name: 'ipa'})
+                .query({name: queryParam})
                 .end((err, response) => {
                 expect(response.statusCode).to.equal(401);
                 done();
