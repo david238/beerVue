@@ -8,7 +8,7 @@
           </div>
         </v-col>
         <v-col class="mt-6 beerDetails" md="12" lg="8" xl="8" cols="12" sm="12">
-          <BeerDetails v-bind:selectedItem="selectedItem"/>
+          <BeerDetails v-bind:selectedItem="selectedItem" v-on="$listeners" v-bind:ratingStatus="ratingStatus" v-bind:bus="bus"/>
         </v-col>
       </v-row>
     </v-container>
@@ -18,6 +18,7 @@
 <script>
 import BeerItem from './BeerItem.vue';
 import BeerDetails from './BeerDetails.vue';
+import Vue from 'vue';
 
 export default {
   name: 'ListBeers',
@@ -28,16 +29,27 @@ export default {
   props: {
     listBeers: {
       type: Array
+    },
+    ratingStatus: {
+      type: Boolean
     }
   },
   data() {
     return { 
-      selectedItem: {}
+      selectedItem: {},
+      bus: new Vue()
     }
   },
   methods: {
     changeSelectedItem(item) {
       this.selectedItem = item;
+      
+      // clear results on item change.
+      this.$emit('clear-rating-status');
+
+      // clear Comments and ratings
+      this.bus.$emit('clear-ratings-comments');
+      this.bus.$emit('close-panel');
     }
   }
 }

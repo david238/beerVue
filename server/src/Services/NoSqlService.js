@@ -23,7 +23,6 @@ class NoSqlService {
         return new Promise((resolve, reject) => {
             db.find().make(function(filter) {
                 filter.callback(function(err, response) {
-                    console.log(err, response);
                     if (err) {
                         reject(err);
                     } else {

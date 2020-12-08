@@ -14,9 +14,8 @@
 
     <v-main class="mainContainer">
       <div class="error" v-html="error"> Errro</div>
-      <ListBeers v-model="listBeers" v-bind:listBeers="listBeers"/>
+      <ListBeers v-model="listBeers" v-bind:listBeers="listBeers" v-bind:ratingStatus="ratingStatus" @rate-beer="postBeerRating"  @clear-rating-status="clearRatingStatus"/>
     </v-main>
-
   </div>
 </template>
 
@@ -32,24 +31,33 @@ export default {
       ListBeers
   },
   methods: {
-    searchBeerName2(name) {
-      // and search for beername
-      this.beerName = name;
-    },
     async searchBeerName(name) {
       try {
-        const response =  await BeersService.getBeer({name: name});
+        const response = await BeersService.getBeer({name: name});
         this.listBeers = response.data.result;
       } catch (err) {
+        // TODO: set error
         this.error = 'Oops, an error occured'
       }
+    },
+    async postBeerRating(params) {
+      try {
+        const response = await BeersService.postBeerRating(params);
+        this.ratingStatus = response.status === 200;
+      } catch (err) {
+        this.error = 'Oops sorry, we cannot rate this beer right now. Please try later.';
+      }
+    },
+    clearRatingStatus() {
+      this.ratingStatus = false;
     }
   },
   data() {
     return {
       beerName: '',
       error: null,
-      listBeers: []
+      listBeers: [],
+      ratingStatus: false
     }  
   }
 }

@@ -3,6 +3,7 @@
       <v-input >
           <v-text-field height="30" class="pt-3"
             label="Search A Beer" v-model="searchThisBeer"
+            v-on:keyup="onKeyPress"
           ></v-text-field>
           <v-btn
             class="mx-2"
@@ -26,6 +27,13 @@ export default {
   data() {
     return {
       searchThisBeer: ''
+    }
+  },
+  methods: {
+    onKeyPress(e) {
+      if (e.keyCode === 13) {
+        this.$emit('search-beer', this.searchThisBeer)
+      }
     }
   }
 }
