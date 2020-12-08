@@ -3,9 +3,13 @@
     <v-container>
       <v-row>
         <v-col class="mt-6 listofBeers" md="12" lg="4" xl="4" cols="12" sm="12">
-          <div v-for="beer in listBeers" v-bind:key="beer.id" class="listContainer">
-            <BeerItem v-bind:beerItem="beer" v-on:item-clicked="changeSelectedItem"/>
-          </div>
+          <BeerItem v-for="(beer, index) in listBeers" 
+            v-bind:key="index" 
+            class="listItemContainer" 
+            v-bind:beerItem="beer" 
+            v-on:set-active="changeSelectedItem"
+            v-bind:index="index"
+            v-bind:active="index === activeIndex"/>
         </v-col>
         <v-col class="mt-6 beerDetails" md="12" lg="8" xl="8" cols="12" sm="12">
           <BeerDetails v-bind:selectedItem="selectedItem" v-on="$listeners" v-bind:ratingStatus="ratingStatus" v-bind:bus="bus"/>
@@ -37,13 +41,18 @@ export default {
   data() {
     return { 
       selectedItem: {},
-      bus: new Vue()
+      bus: new Vue(),
+      activeIndex: 0
     }
   },
   methods: {
-    changeSelectedItem(item) {
-      this.selectedItem = item;
-      
+    changeSelectedItem(index) {
+      // set new selectedItem
+      this.selectedItem = this.listBeers[index];
+
+      // change activeIndex
+      this.activeIndex = index;
+
       // clear results on item change.
       this.$emit('clear-rating-status');
 

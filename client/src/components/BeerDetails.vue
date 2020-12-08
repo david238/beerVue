@@ -20,9 +20,12 @@
         <v-expansion-panels v-model="openClose">
           <v-expansion-panel>
             <v-expansion-panel-header>
-              Submit a Review
+              Submit Reviews
             </v-expansion-panel-header>
             <v-expansion-panel-content>
+              <div v-if="ratingStatus == true">
+                Thank you for your reviews!
+              </div>
               <v-rating
                 color="warning"
                 hover
@@ -46,9 +49,6 @@
                 rounded
                 @click="onSubmit(selectedItem.id)"
               >Submit</v-btn>
-              <div v-if="ratingStatus == true">
-                Submitted successfully
-              </div>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
