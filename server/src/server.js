@@ -47,6 +47,7 @@ app.get('/beers', validateRequest, cacheMemory, (req, res) => {
     }
 });
 
+// Task 2: Add a REST endpoint to allow a user to add a rating to a beer.
 app.post('/beers/rating/:id', validateRequest, (req, res) => {
     var params = {
         initParams: {

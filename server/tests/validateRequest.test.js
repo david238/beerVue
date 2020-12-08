@@ -5,12 +5,15 @@ let server = require("../src/server");
 
 chai.use(chaiHttp);
 
+
+// Task 4: Unit tests Add applicable unit tests to the express middleware module in Task 3.
+
 const validEmailAddress = 'test@gmail.com';
 const invalidEmailAddress = 'test@gmailcom';
 
 describe('Unit Test API middleware', () => {
-    // Test middlewares with x-user Header with and without valid email address
     describe('GET /beers', () => {
+        // Test middlewares with x-user Header with a valid email address
         describe('valid email address', () => {
             it("should response with status code 200", (done) => {
                 chai.request(server)
@@ -35,6 +38,7 @@ describe('Unit Test API middleware', () => {
             });
         });
 
+        // Test middlewares with x-user Header without a valid email address
         describe('invalid email address', () => {
             it("should response with status code 401", (done) => {
                 chai.request(server)

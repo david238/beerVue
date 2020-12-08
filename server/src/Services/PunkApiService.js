@@ -45,6 +45,7 @@ class PunkApiService {
             //return only id id, name, description, first_brewed, food_pairings
             try {
                 axios.get(this.fullPathGetAllBeers, {params: {beer_name: beerName}}).then((response) => {
+                    console.log(response.data);
                     resolve(this.reduceElements(response.data));
                 }).catch((error) => {
                     reject(error);
