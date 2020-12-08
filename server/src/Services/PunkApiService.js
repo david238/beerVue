@@ -13,7 +13,8 @@ class PunkApiService {
                 name: element.name,
                 description: element.description,
                 first_brewed: element.first_brewed,
-                food_pairing: element.food_pairing
+                food_pairing: element.food_pairing,
+                image_url: element.image_url
             };
         });
     }

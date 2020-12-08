@@ -2,19 +2,19 @@
   <div class="Beers">
     <v-app-bar
       app
-      color="amber lighten-1"
+      color="grey darken-4"
       dark
     >
       <div class="d-flex align-center">
           <SearchBar v-on:search-beer="searchBeerName"/>
       </div>
       <v-spacer></v-spacer>
-      <span class="mr-2">Welcome to BeersVue</span>
+      <span class="mr-2 title">Welcome to BeersVue</span>
     </v-app-bar>
 
-    <v-main>
-      <div v-html="error"/>
-      <ListBeers v-model="listBeers" v-bind:listBeers="listBeers" value=""/>
+    <v-main class="mainContainer">
+      <div class="error" v-html="error"> Errro</div>
+      <ListBeers v-model="listBeers" v-bind:listBeers="listBeers"/>
     </v-main>
 
   </div>
@@ -58,5 +58,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.error {
+  text-align: center;
+  font-family: 'Ovo';
+}
 
+.mainContainer {
+  background: #616161;
+}
+
+.title { 
+  font-family: 'Ovo';
+}
 </style>

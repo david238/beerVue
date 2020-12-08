@@ -8,8 +8,8 @@
             class="mx-2"
             fab
             dark
-            small
-            color="primary"
+            x-small
+            color="orange accent-2"
             @click="$emit('search-beer', searchThisBeer)"
           >
             <v-icon dark>

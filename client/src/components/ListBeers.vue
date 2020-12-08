@@ -2,12 +2,12 @@
   <div class="ListBeers">
     <v-container>
       <v-row>
-        <v-col cols="4">
-          <div v-for="beer in listBeers" v-bind:key="beer.id">
+        <v-col cols="4" class="mt-6 listofBeers" md="12" lg="4" xl="4" xs="12" sm="12">
+          <div v-for="beer in listBeers" v-bind:key="beer.id" class="listContainer">
             <BeerItem v-bind:beerItem="beer" v-on:item-clicked="changeSelectedItem"/>
           </div>
         </v-col>
-        <v-col cols="8">
+        <v-col cols="8" class="mt-6 beerDetails" md="12" lg="8" xl="8" xs="12" sm="12">
           <BeerDetails v-bind:selectedItem="selectedItem"/>
         </v-col>
       </v-row>
@@ -45,5 +45,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.listofBeers {
+  color: white;
+  background: #212121;
+  border-radius: 20px;
+  overflow-y: auto;
+  height: 800px;
+  padding: 0;
+}
 
+.beerDetails {
+    height: 800px;
+    padding: 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
 </style>
