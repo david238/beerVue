@@ -2,12 +2,12 @@
   <div class="ListBeers">
     <v-container>
       <v-row>
-        <v-col cols="4" class="mt-6 listofBeers" md="12" lg="4" xl="4" xs="12" sm="12">
+        <v-col class="mt-6 listofBeers" md="12" lg="4" xl="4" cols="12" sm="12">
           <div v-for="beer in listBeers" v-bind:key="beer.id" class="listContainer">
             <BeerItem v-bind:beerItem="beer" v-on:item-clicked="changeSelectedItem"/>
           </div>
         </v-col>
-        <v-col cols="8" class="mt-6 beerDetails" md="12" lg="8" xl="8" xs="12" sm="12">
+        <v-col class="mt-6 beerDetails" md="12" lg="8" xl="8" cols="12" sm="12">
           <BeerDetails v-bind:selectedItem="selectedItem"/>
         </v-col>
       </v-row>
@@ -48,7 +48,8 @@ export default {
 .listofBeers {
   color: white;
   background: #212121;
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
   overflow-y: auto;
   height: 800px;
   padding: 0;

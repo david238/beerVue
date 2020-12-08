@@ -40,9 +40,8 @@ export default {
       try {
         const response =  await BeersService.getBeer({name: name});
         this.listBeers = response.data.result;
-        // console.log('resp: ', response, name);
       } catch (err) {
-        this.error = err.response.data.error
+        this.error = 'Oops, an error occured'
       }
     }
   },
