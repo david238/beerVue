@@ -2,10 +2,13 @@
 
 Exercise: Build a RESTFul API using Express.js on Node.js
 The following resources should be referenced to complete the exercise.
+
 Punk API documentation:
  - https://punkapi.com/documentation/v2 nosql
+ 
 NPM module: 
  - https://www.npmjs.com/package/nosql
+
 memory-cache module: 
 - https://www.npmjs.com/package/memory-cache
 
