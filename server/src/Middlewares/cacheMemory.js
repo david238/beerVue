@@ -12,7 +12,7 @@ const cacheMemory = async (req, res, next) => {
         res.send(JSON.parse(cacheContent));
         return;
     } else {
-        // if cacheContent == null, set content when calling res.send as a callback.
+        // if cacheContent == null, set content when calling res.send
         res.sendResponse = res.send
         res.send = (body) => {
             cache.put(key, body);

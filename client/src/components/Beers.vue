@@ -12,8 +12,9 @@
       <span class="mr-2 title">Welcome to BeersVue</span>
     </v-app-bar>
 
+    <!-- check how would i do the unit testing for the front end. write some code tomorrow -->
     <v-main class="mainContainer">
-      <div class="error" v-html="error"> Errro</div>
+      <div class="error" v-html="error"> Error</div>
       <ListBeers v-model="listBeers" v-bind:listBeers="listBeers" v-bind:ratingStatus="ratingStatus" @rate-beer="postBeerRating"  @clear-rating-status="clearRatingStatus"/>
     </v-main>
   </div>

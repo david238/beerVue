@@ -33,7 +33,7 @@ describe('Unit Test API middleware', () => {
                 .set('x-user', validEmailAddress)
                 .query({name: queryParam})
                 .end((err, response) => {
-                expect(response.body.result).to.be.an('array');
+                    expect(response.body.result).to.be.an('array');
                 done();
                 });
             });
@@ -47,7 +47,7 @@ describe('Unit Test API middleware', () => {
                 .set('x-user', invalidEmailAddress)
                 .query({name: queryParam})
                 .end((err, response) => {
-                expect(response.statusCode).to.equal(401);
+                    expect(response.statusCode).to.equal(401);
                 done();
                 });
             });
